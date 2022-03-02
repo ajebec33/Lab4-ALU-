@@ -1,0 +1,42 @@
+module ALU (A,B,Cin, Op, Sum, Status);
+parameter N = 31;
+input [31:0]A;
+input [31:0]B;
+input Cin;
+
+output reg [31:0] Sum;
+output reg [3:0] Status;
+
+//for Full Adder ouput
+wire carry[32:0];
+wire In0[
+assign carry[0] = Cin;
+
+xor In0(I0, A, B );
+and In1(I1, A, B);
+or In2(I2, A, B);
+nor In3(I3, A, B);
+
+//Call Full Adder
+//loop
+
+
+generate
+	genvar i;
+		for(i =0; i< 32 ; i++)
+		begin: full_adder
+		Full_Adder inst0 (A[i], B[i], carry[i], S[i], carry[i+1]);//A,B,Cin,S,Cout
+endgenerate
+
+
+//Status
+assign Status[0] = carry[32];
+
+//without loop
+Full_Adder inst0 (A[0], B[0], carry[i],
+
+//Call Shifter
+Shifter inst32 (A, B, I6, I7);
+
+//Call Mux
+Mux_8to1 inst33 (
